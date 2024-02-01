@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>영어 회화 연습 앱</title>
+</head>
+<body>
+    <h1>영어로 대화해보세요!</h1>
+    <input type="text" id="userInput" placeholder="여기에 입력하세요">
+    <button onclick="sendMessage()">전송</button>
+    <p id="response"></p>
+
+    <script>
+        function sendMessage() {
+            var userInput = document.getElementById('userInput').value;
+            fetch('/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({message: userInput}),
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('response').innerText = data.response;
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+</body>
+</html>
