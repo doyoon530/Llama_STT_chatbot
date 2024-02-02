@@ -1,49 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>음성 인식 챗봇</title>
+    <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-    <button id="startRecord">녹음 시작</button>
-    <button id="stopRecord" disabled>녹음 중지</button>
-    <!-- 음성 인식 결과를 표시할 요소 추가 -->
-    <div id="recognitionResult">인식 결과를 여기에 표시합니다.</div>
-    <script>
-        let mediaRecorder;
-        let audioChunks = [];
+    <div class="title-container">
+        <h2>AI정보공학과 2021013218 김도윤</h2>
+        <h1>음성 인식 챗봇</h1>
+    </div>
 
-        document.getElementById("startRecord").onclick = function() {
-            navigator.mediaDevices.getUserMedia({ audio: true })
-                .then(stream => {
-                    mediaRecorder = new MediaRecorder(stream);
-                    mediaRecorder.ondataavailable = function(e) {
-                        audioChunks.push(e.data);
-                    };
-                    mediaRecorder.onstop = function() {
-                        const audioBlob = new Blob(audioChunks, { 'type' : 'audio/wav; codecs=opus' });
-                        const formData = new FormData();
-                        formData.append("audio", audioBlob);
-
-                        fetch("/chat", {
-                            method: "POST",
-                            body: formData,
-                            // 필요한 경우 Content-Type 등의 추가 헤더를 설정
-                        }).then(response => response.json()).then(data => {
-                            // 서버로부터 받은 음성 인식 결과를 화면에 표시
-                            document.getElementById("recognitionResult").innerText = "인식 결과: " + data.response;
-                        }).catch(console.error);
-
-                        audioChunks = [];
-                    };
-                    mediaRecorder.start();
-                    document.getElementById("stopRecord").disabled = false;
-                }).catch(console.error);
-        };
-
-        document.getElementById("stopRecord").onclick = function() {
-            mediaRecorder.stop();
-            document.getElementById("stopRecord").disabled = true;
-        };
-    </script>
+    <div class="chat-container">
+        <div id="chatWindow" class="chat-window"></div>
+        <button id="startRecord" class="record-btn">녹음 시작</button>
+        <button id="stopRecord" class="record-btn" disabled>녹음 중지</button>
+    </div>
+    <script src="/static/script.js"></script>
 </body>
 </html>
