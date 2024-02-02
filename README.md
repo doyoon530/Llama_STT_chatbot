@@ -8,6 +8,10 @@ This project is a web-based application that allows users to record their voice 
 
 Through the web interface, users can pose questions verbally, which are immediately converted to text. This text is fed into the Llama 2 model to generate responses relevant to the query. LangChain facilitates this process, supporting rapid and efficient response generation. Consequently, this system offers a platform where users can seek information in a conversational manner and receive answers through interaction with AI.
 
+## 사용 model
+models에 넣어주세요.
+https://huggingface.co/TheBloke/Llama-2-7B-Chat-GGUF/blob/main/llama-2-7b-chat.Q2_K.gguf
+
 ## 업데이트
 ### 2024-02-02
 <img width="700" alt="screen_2024-02-02" src="https://github.com/doyoon530/llama_conversation/assets/150874253/0da478c6-d67a-4a93-b263-6da39c120e81">
