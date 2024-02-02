@@ -20,12 +20,12 @@ document.getElementById("startRecord").onclick = function() {
                     const chatWindow = document.getElementById("chatWindow");
                     const userMessage = document.createElement("div");
                     userMessage.classList.add("message", "user-message");
-                    userMessage.innerText = data.response;
+                    userMessage.innerText = data.user_speech; // 사용자의 음성 입력 텍스트
                     chatWindow.appendChild(userMessage);
-
+                
                     const systemMessage = document.createElement("div");
                     systemMessage.classList.add("message", "system-message");
-                    systemMessage.innerText = "챗봇응답: 개발중...";
+                    systemMessage.innerText = data.sys_response; // 서버로부터의 응답 텍스트
                     chatWindow.appendChild(systemMessage);
                 }).catch(console.error);
 

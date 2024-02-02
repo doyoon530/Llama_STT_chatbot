@@ -79,7 +79,7 @@ def chat():
             print(f"음성 인식 실패: {e}")
             return jsonify({'error': '음성 인식 중 문제가 발생했습니다.'}), 500
     else:
-        user_input = request.json.get('message', '') if request.json else ''
+        user_input = request.json.get('message', '죄송합니다 다시 말해주세요.') if request.json else ''
         if user_input:  # 사용자 입력이 있는 경우에만 처리
             response_text = get_response_from_llama(user_input)
     

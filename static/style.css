@@ -28,10 +28,24 @@ body {
     gap: 10px;
 }
 
+/* 애니메이션 키프레임 정의 */
+@keyframes popup {
+    from {
+        transform: scale(0.2);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* 메시지에 애니메이션 적용 */
 .message {
     padding: 10px;
     border-radius: 4px;
     max-width: 70%;
+    animation: popup 0.2s ease-out; /* 애니메이션 이름, 지속 시간, 타이밍 함수 설정 */
 }
 
 .user-message {
